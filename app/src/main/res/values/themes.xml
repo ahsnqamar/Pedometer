@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="PoppinsBoldFont" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="Theme.Pedometer" parent="Theme.Material3.DayNight.NoActionBar" >
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorSecondary">@color/secondaryDark</item>
+        <item name="colorTertiary">@color/tertiaryDark</item>
+        <item name="android:textColor">@color/textDark</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="android:statusBarColor">@color/secondaryDark</item>
+    </style>
+
+    <style name="Theme.Background" parent="Theme.Material3.DayNight.NoActionBar" >
+        <item name="background">@color/backgroundDark</item>
+        <item name="backgroundTint">@color/backgroundDark</item>
+        <item name="backgroundColor">@color/backgroundDark</item>
+    </style>
+
+</resources>
