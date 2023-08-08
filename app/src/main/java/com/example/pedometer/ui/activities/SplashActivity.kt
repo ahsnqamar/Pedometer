@@ -1,9 +1,10 @@
-package com.example.pedometer
+package com.example.pedometer.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.activity.ComponentActivity
+import com.example.pedometer.R
 
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class SplashActivity : ComponentActivity() {
         Handler().postDelayed({
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
-        }, 3000)
+        }, 1000)
 
     }
 }

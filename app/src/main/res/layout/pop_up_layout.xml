@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:paddingEnd="@dimen/_14sdp"
+    android:paddingTop="@dimen/_8sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_14sdp"
+        android:background="@drawable/rectangle_btn_home">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/history_card_popup"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/rectangle_btn_popup"
+            android:padding="@dimen/_10sdp"
+            android:paddingStart="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/history_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/history_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/Theme.Pedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="@string/history_text_popup"
+                app:layout_constraintStart_toEndOf="@id/history_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reset_card_popup"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/rectangle_btn_popup"
+            android:padding="@dimen/_10sdp"
+            android:paddingStart="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/history_card_popup">
+
+            <ImageView
+                android:id="@+id/reset_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/delete_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/Theme.Pedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="@string/reset_text_popup"
+                app:layout_constraintStart_toEndOf="@id/reset_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/off_card_popup"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:background="@drawable/rectangle_btn_popup"
+            android:padding="@dimen/_10sdp"
+            android:paddingStart="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reset_card_popup">
+
+            <ImageView
+                android:id="@+id/off_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/power_off_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/Theme.Pedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:text="@string/turnoff_text_popup"
+                app:layout_constraintStart_toEndOf="@id/off_icon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,10 +3,10 @@
 
     <style name="circularCardHome">
         <item name="cardCornerRadius">@dimen/_25sdp</item>
-        <item name="cardBackgroundColor">@color/secondaryDark</item>
+        <item name="cardBackgroundColor">@color/secondaryColor</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:padding">@dimen/_7sdp</item>
-        <item name="strokeColor">@color/secondaryDark</item>
+        <item name="strokeColor">@color/secondaryColor</item>
     </style>
 
 </resources>

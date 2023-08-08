@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Pedometer"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
+            android:name=".ui.activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Pedometer">

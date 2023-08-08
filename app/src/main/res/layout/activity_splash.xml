@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundDark"
-    android:backgroundTint="@color/backgroundDark">
+    android:background="@color/backgroundColor"
+    android:backgroundTint="@color/backgroundColor">
 
     <ImageView
         android:id="@+id/imageView"
@@ -34,11 +34,11 @@
         style="@style/Theme.Pedometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pedometer"
-        android:textStyle="bold"
         android:fontFamily="@font/poppins_bold"
+        android:text="Pedometer"
         android:textAllCaps="true"
         android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -62,27 +62,25 @@
         android:layout_marginEnd="@dimen/_30sdp"
         android:layout_marginBottom="44dp"
         android:progress="30"
-        app:indicatorColor="@color/primaryLight"
+        app:indicatorColor="@color/primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:trackColor="@color/emptyDark"
+        app:trackColor="@color/emptyColor"
         app:trackThickness="@dimen/_25sdp" />
 
     <TextView
         style="@style/Theme.Pedometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Loading..."
-        android:textColor="@color/tertiaryDark"
-        android:textSize="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_4sdp"
+        android:text="Loading..."
+        android:textColor="@color/tertiaryColor"
+        android:textSize="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearProgressIndicator" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

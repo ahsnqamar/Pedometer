@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundDark"
-    android:backgroundTint="@color/backgroundDark"
-    tools:context=".HomeActivity">
+    android:background="@color/backgroundColor"
+    android:backgroundTint="@color/backgroundColor"
+    tools:context=".ui.activities.HomeActivity">
 
     <!--<androidx.appcompat.widget.Toolbar
         android:id="@+id/home_tool_bar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/secondaryDark"
+        android:background="@color/secondaryColor"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -41,34 +41,33 @@
             android:src="@drawable/settings_white" />
 
     </androidx.appcompat.widget.Toolbar>-->
-    
+
     <fragment
+        android:id="@+id/frame_layout"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:navGraph = "@navigation/bottom_navigation"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
-        android:id="@+id/frame_layout"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/bottom_navigation" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_view"
+        style="@style/Theme.Pedometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_nav_view"
+        android:background="@color/secondaryColor"
+        app:itemIconTint="@color/textColor"
+        app:itemTextColor="@color/textColor"
         app:labelVisibilityMode="labeled"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingBottom="@dimen/_6sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/secondaryDark"
-        app:itemTextColor="@color/textDark"
-        app:itemIconTint="@color/textDark"
-        style="@style/Theme.Pedometer"
-        app:menu="@menu/bottom_menu"/>
-
-
-
-
+        app:menu="@menu/bottom_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

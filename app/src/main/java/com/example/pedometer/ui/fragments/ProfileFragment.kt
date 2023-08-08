@@ -1,4 +1,4 @@
-package com.example.pedometer.ui.theme.fragments
+package com.example.pedometer.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.pedometer.R
 
 
-class ReportsFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ class ReportsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reports, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
 }

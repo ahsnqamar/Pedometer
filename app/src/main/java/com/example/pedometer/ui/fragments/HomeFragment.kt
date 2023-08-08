@@ -1,5 +1,6 @@
-package com.example.pedometer.ui.theme.fragments
+package com.example.pedometer.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pedometer.R
 import com.example.pedometer.databinding.FragmentHomeBinding
-import com.example.pedometer.ui.theme.adapters.AddWaterAdapter
-import com.example.pedometer.ui.theme.models.AddWaterModel
+import com.example.pedometer.ui.adapters.AddWaterAdapter
+import com.example.pedometer.models.AddWaterModel
+import com.example.pedometer.utils.PopUtils
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.XAxis
@@ -35,23 +37,31 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater,container,false)
+        binding = FragmentHomeBinding.inflate(inflater,container,false)
 
         binding.waterRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.waterRv.adapter = AddWaterAdapter()
+        binding.waterRv.adapter = adapter
 
-        adapter.setData(getWaterList())
+        val waterList = getWaterList()
+        println("waterList: $waterList")
+        adapter.setData(waterList)
 
         setUpBarChart(binding.barChartHome)
+
+        binding.moreIconToolbarHome.setOnClickListener {
+            println("More icon clicked")
+            PopUtils.showPopUpWindow(requireContext(), it, R.layout.pop_up_layout)
+        }
 
         return binding.root
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun getWaterList(): List<AddWaterModel> {
         val list = ArrayList<AddWaterModel>()
-        list.add(AddWaterModel(R.drawable.water_glass, "200 ml"))
-        list.add(AddWaterModel(R.drawable.water_glass, "200 ml"))
-        list.add(AddWaterModel(R.drawable.water_glass, "200 ml"))
+        list.add(AddWaterModel((R.drawable.water_glass), "200 ml"))
+        list.add(AddWaterModel((R.drawable.water_glass), "200 ml"))
+        list.add(AddWaterModel((R.drawable.water_glass), "200 ml"))
 
         return list
 

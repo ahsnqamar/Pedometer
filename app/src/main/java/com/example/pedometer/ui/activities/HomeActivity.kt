@@ -1,10 +1,11 @@
-package com.example.pedometer
+package com.example.pedometer.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.pedometer.R
 import com.example.pedometer.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

@@ -8,17 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!--    custom colors below LIGHT THEME-->
+    <!--    custom colors below DARK THEME-->
     <color name="primaryColor">#63C563</color>
-    <color name="secondaryColor">#FFFFFF</color>
-    <color name="tertiaryColor">#555555</color>
-    <color name="emptyColor">#D7E1E1</color>
-    <color name="textColor">#111111</color>
-    <color name="inactiveColor">#80111111</color>
-    <color name="onPrimaryColor">#FFFFFF</color>
-    <color name="backgroundColor">#F0F1F5</color>
-    <color name="primaryInactiveColor">#8063C563</color>
+    <color name="secondaryColor">#222A31</color>
+    <color name="tertiaryColor">#C6C6C6</color>
+    <color name="emptyColor">#2D353C</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="inactiveColor">#80FFFFFF</color>
+    <color name="onPrimaryColor">#111111</color>
+    <color name="backgroundColor">#192026</color>
+    <color name="primaryInactiveColor">#8077DD77</color>
     <color name="primaryBar">#77DD77</color>
-
-
 </resources>

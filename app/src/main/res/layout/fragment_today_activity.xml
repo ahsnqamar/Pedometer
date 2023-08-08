@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/today_activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/secondaryColor"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_back" />
+
+        <TextView
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/_8sdp"
+            android:text="@string/today_activity_text"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline_today_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline_today_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/today_activity_toolbar"
+        app:layout_constraintStart_toStartOf="@id/start_guideline_today_activity"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline_today_activity"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/_7sdp"
+                android:paddingBottom="@dimen/_7sdp"
+                android:background="@drawable/rectangle_btn_home">
+
+                <TextView
+                    android:id="@+id/steps_text_today"
+                    style="@style/Theme.Pedometer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/_7sdp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/steps_text_today"
+                    app:layout_constraintEnd_toEndOf="@+id/steps_constraint"
+                    app:layout_constraintHorizontal_bias="0.131"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/steps_constraint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:background="@drawable/background_btn_today"
+                    android:padding="@dimen/_8sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="@dimen/_13sdp"
+                    app:layout_constraintTop_toBottomOf="@id/steps_text_today"
+                    app:layout_constraintWidth_percent="0.4">
+
+                    <ImageView
+                        android:id="@+id/steps_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/run_small"
+                        android:background="@drawable/steps_bg_small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/steps_count_text_today"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/steps_iv"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/calories_txt_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/calories_text_today"
+                    app:layout_constraintStart_toStartOf="@id/calories_constraint"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/calories_constraint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:background="@drawable/background_btn_today"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    app:layout_constraintTop_toBottomOf="@id/calories_txt_today"
+                    app:layout_constraintWidth_percent="0.4">
+
+                    <ImageView
+                        android:id="@+id/calories_img_today"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/calories_bg_small"
+                        android:src="@drawable/calories_icon"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/calories_count_text_today"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/calories_img_today"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/distance_txt_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/distance_text_today"
+                    app:layout_constraintEnd_toEndOf="@+id/distance_constraint"
+                    app:layout_constraintHorizontal_bias="0.231"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/steps_constraint" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/distance_constraint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:background="@drawable/background_btn_today"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    app:layout_constraintTop_toBottomOf="@id/distance_txt_today"
+                    app:layout_constraintWidth_percent="0.4">
+
+                    <ImageView
+                        android:id="@+id/distance_img_today"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/distance_bg_small"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/distance_icon"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold"
+                        android:text="@string/distance_count_text_today"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/distance_img_today"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/time_txt_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/time_text_today"
+                    app:layout_constraintEnd_toEndOf="@+id/time_constraint"
+                    app:layout_constraintHorizontal_bias="0.135"
+                    app:layout_constraintStart_toStartOf="@id/time_constraint"
+                    app:layout_constraintTop_toBottomOf="@+id/calories_constraint" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/time_constraint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:background="@drawable/background_btn_today"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginLeft="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    app:layout_constraintTop_toBottomOf="@id/time_txt_today"
+                    app:layout_constraintWidth_percent="0.4">
+
+                    <ImageView
+                        android:id="@+id/time_img_today"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/time_bg_small"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/time_icon"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold"
+                        android:text="@string/time_count_text_today"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/time_img_today"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/water_txt_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/water_text_today"
+                    app:layout_constraintEnd_toEndOf="@+id/water_constraint"
+                    app:layout_constraintHorizontal_bias="0.135"
+                    app:layout_constraintStart_toStartOf="@id/water_constraint"
+                    app:layout_constraintTop_toBottomOf="@+id/distance_constraint" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/water_constraint"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:background="@drawable/background_btn_today"
+                    android:padding="@dimen/_6sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="@dimen/_13sdp"
+                    android:layout_marginRight="@dimen/_13sdp"
+                    app:layout_constraintTop_toBottomOf="@id/water_txt_today"
+                    app:layout_constraintWidth_percent="0.4">
+
+                    <ImageView
+                        android:id="@+id/water_img_today"
+                        android:background="@drawable/water_bg_small"
+                        android:layout_width="wrap_content"
+                        android:padding="@dimen/_2sdp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/water_glass"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textStyle="bold"
+                        android:text="@string/water_count_text_today"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/water_img_today"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
