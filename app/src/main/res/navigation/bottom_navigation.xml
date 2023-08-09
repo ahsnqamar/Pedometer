@@ -2,25 +2,54 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/home_menu"
-    android:id="@+id/bottom_navigation">
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/home_menu">
 
     <fragment
         android:id="@+id/home_menu"
         android:name="com.example.pedometer.ui.fragments.HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_menu_to_todayActivityFragment"
+            app:destination="@id/todayActivityFragment" />
+
+        <action android:id="@+id/action_home_menu_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/reports_menu"
         android:name="com.example.pedometer.ui.fragments.ReportsFragment"
-        tools:layout="@layout/fragment_reports"/>
+        tools:layout="@layout/fragment_reports" />
 
-    <fragment android:id="@+id/health_menu"
+    <fragment
+        android:id="@+id/health_menu"
         android:name="com.example.pedometer.ui.fragments.HealthFragment"
-        tools:layout="@layout/fragment_health"/>
+        tools:layout="@layout/fragment_health" />
 
-    <fragment android:id="@+id/profile_menu"
+    <fragment
+        android:id="@+id/profile_menu"
         android:name="com.example.pedometer.ui.fragments.ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile" />
+
+
+    <fragment
+        android:id="@+id/todayActivityFragment"
+        android:name="com.example.pedometer.ui.fragments.TodayActivityFragment"
+        android:label="TodayActivityFragment">
+        <action
+            android:id="@+id/action_todayActivityFragment_to_home_menu"
+            app:destination="@id/home_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.pedometer.ui.fragments.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_home_menu"
+            app:destination="@id/home_menu" />
+    </fragment>
 
 </navigation>

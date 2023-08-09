@@ -8,41 +8,9 @@
     android:backgroundTint="@color/backgroundColor"
     tools:context=".ui.activities.HomeActivity">
 
-    <!--<androidx.appcompat.widget.Toolbar
-        android:id="@+id/home_tool_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/secondaryColor"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:src="@drawable/sprint_white" />
 
-        <TextView
-            style="@style/Theme.Pedometer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_bold"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_4sdp"
-            android:text="PEDOMETER "
-            android:textSize="@dimen/_16sdp"
-            android:textStyle="italic" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/settings_white" />
-
-    </androidx.appcompat.widget.Toolbar>-->
-
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frame_layout"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"

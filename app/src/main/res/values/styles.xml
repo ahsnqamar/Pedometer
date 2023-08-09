@@ -8,5 +8,10 @@
         <item name="android:padding">@dimen/_7sdp</item>
         <item name="strokeColor">@color/secondaryColor</item>
     </style>
+    
+    <style name="SpinnerTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/bg_spinner</item>
+        <item name="android:paddingLeft">@dimen/_5sdp</item>
+    </style>
 
 </resources>

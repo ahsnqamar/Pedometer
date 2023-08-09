@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pedometer.R
 import com.example.pedometer.databinding.FragmentHomeBinding
+import com.example.pedometer.databinding.PopUpLayoutBinding
 import com.example.pedometer.ui.adapters.AddWaterAdapter
 import com.example.pedometer.models.AddWaterModel
 import com.example.pedometer.utils.PopUtils
@@ -39,6 +41,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
 
+
         binding.waterRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.waterRv.adapter = adapter
 
@@ -46,15 +49,32 @@ class HomeFragment : Fragment() {
         println("waterList: $waterList")
         adapter.setData(waterList)
 
-        setUpBarChart(binding.barChartHome)
+        //setUpBarChart(binding.barChartHome)
 
-        binding.moreIconToolbarHome.setOnClickListener {
-            println("More icon clicked")
-            PopUtils.showPopUpWindow(requireContext(), it, R.layout.pop_up_layout)
-        }
+        initListener()
+
+
 
         return binding.root
     }
+
+    private fun initListener() {
+        binding.moreIconToolbarHome.setOnClickListener {
+            println("More icon clicked")
+            PopUtils.showPopUpWindow(requireContext(), it, R.layout.pop_up_layout,buttonCallbacks )
+        }
+
+        binding.pausePlayCard.setOnClickListener {
+            findNavController().navigate(R.id.action_home_menu_to_todayActivityFragment)
+        }
+
+    }
+
+
+    private val buttonCallbacks = mapOf(
+        R.id.history_card_popup to { findNavController().navigate(R.id.action_home_menu_to_historyFragment) }
+    )
+
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun getWaterList(): List<AddWaterModel> {
@@ -68,7 +88,7 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun setUpBarChart(barChart: BarChart) {
+/*    private fun setUpBarChart(barChart: BarChart) {
 
         val dataList = ArrayList<BarEntry>()
 
@@ -149,6 +169,6 @@ class HomeFragment : Fragment() {
             return ""
             //return days.getOrNull(value.toInt()) ?: ""
         }
-    }
+    }*/
 
 }

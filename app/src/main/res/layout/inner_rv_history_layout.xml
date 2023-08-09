@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:background="@color/secondaryColor">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/week_days_bg"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/current_day_txt"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="Today"
+            android:textColor="@color/inactiveColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:src="@drawable/time_clock_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/time_txt_inner_rv"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/time_txt_inner_rv"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:text="0h 32m"
+            android:textColor="@color/timeColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <CheckBox
+        android:id="@+id/history_checkbox"
+        android:layout_width="28dp"
+        android:buttonTint="@color/primaryColor"
+        android:drawableTint="@color/primaryColor"
+        android:layout_height="35dp"
+        android:visibility="gone"
+        android:checked="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="@dimen/_7sdp"/>
+
+    <TextView
+        android:id="@+id/steps_txt_inner_rv"
+        style="@style/Theme.Pedometer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/_8sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="1042"
+        android:textColor="@color/stepsColor"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintStart_toEndOf="@id/history_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Steps"
+        android:textColor="@color/textColor"
+        app:layout_constraintTop_toBottomOf="@id/steps_txt_inner_rv"
+        app:layout_constraintStart_toStartOf="@+id/steps_txt_inner_rv"
+        tools:layout_editor_absoluteY="62dp" />
+
+    <TextView
+        android:id="@+id/calories_txt_inner_rv"
+        style="@style/Theme.Pedometer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.3"
+        android:fontFamily="@font/poppins_bold"
+        android:text="26.5"
+        android:textColor="@color/caloriesColor"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintStart_toEndOf="@+id/steps_txt_inner_rv"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories"
+        android:textColor="@color/textColor"
+        app:layout_constraintStart_toEndOf="@+id/steps_txt_inner_rv"
+        app:layout_constraintTop_toBottomOf="@+id/calories_txt_inner_rv" />
+
+    <TextView
+        android:id="@+id/distance_txt_inner_rv"
+        style="@style/Theme.Pedometer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.3"
+        android:fontFamily="@font/poppins_bold"
+        android:text="1.2"
+        android:textColor="@color/distanceColor"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintStart_toEndOf="@+id/calories_txt_inner_rv"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kilometers"
+        android:textColor="@color/textColor"
+        app:layout_constraintStart_toEndOf="@+id/calories_txt_inner_rv"
+        app:layout_constraintTop_toBottomOf="@+id/calories_txt_inner_rv" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

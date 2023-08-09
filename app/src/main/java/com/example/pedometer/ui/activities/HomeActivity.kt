@@ -2,6 +2,9 @@ package com.example.pedometer.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -23,42 +26,58 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun init(){
+    private fun init() {
 
     }
-    private fun initListener(){
+
+    private fun initListener() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.frame_layout) as NavHostFragment
         val navController = navHostFragment.findNavController()
 
-        navController.addOnDestinationChangedListener(){ _, destination, _ ->
-            when(destination.id){
+        navController.addOnDestinationChangedListener() { _, destination, _ ->
+            when (destination.id) {
                 R.id.home_menu -> {
+                    binding.bottomNavView.isVisible = true
                     binding.bottomNavView.menu.findItem(R.id.home_menu).setIcon(R.drawable.home_filled)
                     binding.bottomNavView.menu.findItem(R.id.reports_menu).setIcon(R.drawable.report_empty)
                     binding.bottomNavView.menu.findItem(R.id.health_menu).setIcon(R.drawable.health_empty)
                     binding.bottomNavView.menu.findItem(R.id.profile_menu).setIcon(R.drawable.profile_empty)
                 }
+
                 R.id.reports_menu -> {
+                    binding.bottomNavView.isVisible = true
                     binding.bottomNavView.menu.findItem(R.id.home_menu).setIcon(R.drawable.home_empty)
                     binding.bottomNavView.menu.findItem(R.id.reports_menu).setIcon(R.drawable.reports_filled)
                     binding.bottomNavView.menu.findItem(R.id.health_menu).setIcon(R.drawable.health_empty)
                     binding.bottomNavView.menu.findItem(R.id.profile_menu).setIcon(R.drawable.profile_empty)
                 }
+
                 R.id.health_menu -> {
+                    binding.bottomNavView.isVisible = true
                     binding.bottomNavView.menu.findItem(R.id.home_menu).setIcon(R.drawable.home_empty)
                     binding.bottomNavView.menu.findItem(R.id.reports_menu).setIcon(R.drawable.report_empty)
                     binding.bottomNavView.menu.findItem(R.id.health_menu).setIcon(R.drawable.health_filled)
                     binding.bottomNavView.menu.findItem(R.id.profile_menu).setIcon(R.drawable.profile_empty)
                 }
+
                 R.id.profile_menu -> {
+                    binding.bottomNavView.isVisible = true
                     binding.bottomNavView.menu.findItem(R.id.home_menu).setIcon(R.drawable.home_empty)
                     binding.bottomNavView.menu.findItem(R.id.reports_menu).setIcon(R.drawable.report_empty)
                     binding.bottomNavView.menu.findItem(R.id.health_menu).setIcon(R.drawable.health_empty)
                     binding.bottomNavView.menu.findItem(R.id.profile_menu).setIcon(R.drawable.profile_filled)
                 }
+
+                else -> {
+                    println("else clicked")
+
+                    binding.bottomNavView.isVisible = false
+                }
             }
         }
 
         binding.bottomNavView.setupWithNavController(navController)
+
     }
+
 }

@@ -15,6 +15,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/history_card_popup"
+            android:clickable="true"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"

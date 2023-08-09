@@ -19,4 +19,8 @@
     <color name="backgroundColor">#192026</color>
     <color name="primaryInactiveColor">#8077DD77</color>
     <color name="primaryBar">#77DD77</color>
+    <color name="timeColor">#1CC5D0</color>
+    <color name="stepsColor">#77DD77</color>
+    <color name="caloriesColor">#FF6B00</color>
+    <color name="distanceColor">#8785FF</color>
 </resources>

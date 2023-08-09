@@ -16,5 +16,10 @@
     <string name="distance_count_text_today">0.5km</string>
     <string name="time_count_text_today">0h 15m</string>
     <string name="water_count_text_today">800 ml</string>
+    <string name="week_txt_history_rv">This Week</string>
+    <string name="total_steps_txt_history_rv">8589 Steps</string>
+    <string name="edit_steps_txt_btm_sheet">Edit Steps Manually</string>
+    <string name="edit_steps_info_btm_sheet">Burned calories, walking distance &amp; duration will be recalculated accordingly</string>
+
 
 </resources>
