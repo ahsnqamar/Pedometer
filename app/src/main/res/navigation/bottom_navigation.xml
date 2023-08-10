@@ -15,6 +15,12 @@
 
         <action android:id="@+id/action_home_menu_to_historyFragment"
             app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_home_menu_to_editStepsSheet"
+            app:destination="@id/editStepsSheet" />
+        <action
+            android:id="@+id/action_home_menu_to_waterIntakeSheet"
+            app:destination="@id/waterIntakeSheet" />
     </fragment>
 
     <fragment
@@ -51,5 +57,15 @@
             android:id="@+id/action_historyFragment_to_home_menu"
             app:destination="@id/home_menu" />
     </fragment>
+    <dialog
+        android:id="@+id/editStepsSheet"
+        android:name="com.example.pedometer.bottomsheets.EditStepsSheet"
+        android:label="EditStepsSheet" >
+    </dialog>
+    <dialog
+        android:id="@+id/waterIntakeSheet"
+        android:name="com.example.pedometer.bottomsheets.WaterIntakeSheet"
+        android:label="WaterIntakeSheet" />
+
 
 </navigation>

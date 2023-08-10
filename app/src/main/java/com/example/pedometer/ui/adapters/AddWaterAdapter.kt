@@ -23,6 +23,7 @@ class AddWaterAdapter : RecyclerView.Adapter<AddWaterAdapter.ViewHolder>() {
         return mAllGlasses.size
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val addWaterModel = mAllGlasses[position]
         println("addWaterModel: $addWaterModel")

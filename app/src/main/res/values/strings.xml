@@ -20,6 +20,10 @@
     <string name="total_steps_txt_history_rv">8589 Steps</string>
     <string name="edit_steps_txt_btm_sheet">Edit Steps Manually</string>
     <string name="edit_steps_info_btm_sheet">Burned calories, walking distance &amp; duration will be recalculated accordingly</string>
+    <string name="save_txt_btm_sheet">Save</string>
+    <string name="cancel_txt_btm_sheet">Cancel</string>
+    <string name="water_intake_txt_btm_sheet">Water Intake</string>
+    <string name="water_intake_info_txt_btm_sheet">Set up &amp; track your daily water intake routine.</string>
 
 
 </resources>

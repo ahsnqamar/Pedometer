@@ -1,157 +1,719 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
     android:background="@color/secondaryColor"
-    android:padding="@dimen/_10sdp"
-    android:layout_height="match_parent">
+    android:padding="@dimen/_10sdp">
 
-    <TextView
-        android:id="@+id/textView"
-        style="@style/Theme.Pedometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_steps_txt_btm_sheet"
-        android:textSize="@dimen/_16sdp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/Theme.Pedometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:text="@string/edit_steps_info_btm_sheet"
-        android:textColor="@color/inactiveColor"
-        android:textSize="@dimen/_8sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView7"
-        style="@style/Theme.Pedometer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:textColor="@color/inactiveColor"
-        app:layout_constraintBottom_toBottomOf="@+id/date_constraint_edit_bs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/date_constraint_edit_bs" />
+<!--    EDIT STEPS BOTTOM SHEET LAYOUT BELOW-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/date_constraint_edit_bs"
-        android:layout_width="0dp"
-        android:layout_marginTop="24dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_btn_today"
-        android:padding="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintWidth_percent="0.5">
+        android:layout_width="match_parent"
+        android:id="@+id/change_steps_bs"
+        android:visibility="visible"
+        android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time"
-        android:textColor="@color/inactiveColor"
-        app:layout_constraintBottom_toBottomOf="@+id/time_constraint_edit_bs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/time_constraint_edit_bs" />
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@id/time_constraint_edit_bs"
-        android:layout_width="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_btn_today"
-        android:padding="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/date_constraint_edit_bs"
-        app:layout_constraintWidth_percent="0.5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10:00 am - 11:00 am"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/arrow_right"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Steps"
-        android:textColor="@color/inactiveColor"
-        app:layout_constraintBottom_toBottomOf="@+id/steps_constraint_edit_bs"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/steps_constraint_edit_bs" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/steps_constraint_edit_bs"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/background_btn_today"
-        android:padding="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@id/time_constraint_edit_bs"
-        app:layout_constraintWidth_percent="0.5">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2000"
+            android:id="@+id/textView"
             style="@style/Theme.Pedometer"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/edit_image"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/edit_steps_txt_btm_sheet"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/Theme.Pedometer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@string/edit_steps_info_btm_sheet"
+            android:textColor="@color/inactiveColor"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintEnd_toStartOf="@+id/edit_bs_end_guideline"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="@color/inactiveColor"
+            app:layout_constraintBottom_toBottomOf="@+id/date_constraint_edit_bs"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
+            app:layout_constraintTop_toTopOf="@+id/date_constraint_edit_bs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/date_constraint_edit_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/background_btn_today"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/edit_bs_end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintWidth_percent="0.5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Today"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="@color/inactiveColor"
+            app:layout_constraintBottom_toBottomOf="@+id/time_constraint_edit_bs"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
+            app:layout_constraintTop_toTopOf="@+id/time_constraint_edit_bs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@id/time_constraint_edit_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/background_btn_today"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@id/edit_bs_end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/date_constraint_edit_bs"
+            app:layout_constraintWidth_percent="0.5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:00 am - 11:00 am"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:src="@drawable/arrow_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Steps"
+            android:textColor="@color/inactiveColor"
+            app:layout_constraintBottom_toBottomOf="@+id/steps_constraint_edit_bs"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
+            app:layout_constraintTop_toTopOf="@+id/steps_constraint_edit_bs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/steps_constraint_edit_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/background_btn_today"
+            app:layout_constraintEnd_toStartOf="@id/edit_bs_end_guideline"
+            app:layout_constraintTop_toBottomOf="@id/time_constraint_edit_bs"
+            app:layout_constraintWidth_percent="0.5">
+
+            <EditText
+                style="@style/Theme.Pedometer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="number"
+                android:maxLength="5"
+                android:text="2000"
+                android:textStyle="bold"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:src="@drawable/edit_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/edit_bs_end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/edit_bs_start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_button_edit_bs"
+            style="@style/Theme.Pedometer"
+            android:backgroundTint="@color/primaryColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/save_txt_btm_sheet"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_16sdp"
+            app:layout_constraintEnd_toStartOf="@+id/edit_bs_end_guideline"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/steps_constraint_edit_bs"
+            app:layout_constraintWidth_percent="0.88" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button_edit_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/_8sdp"
+            android:backgroundTint="@color/emptyColor"
+            android:text="@string/cancel_txt_btm_sheet"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_16sdp"
+            app:layout_constraintEnd_toStartOf="@+id/edit_bs_end_guideline"
+            app:layout_constraintStart_toStartOf="@id/edit_bs_start_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/save_button_edit_bs"
+            app:layout_constraintWidth_percent="0.88" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--    EDIT DATE BOTTOM SHEET CONTENT BELOW-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/change_date_bs"
+        android:layout_height="match_parent"
+        android:background="@color/secondaryColor"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:id="@+id/edit_date_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView10"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_14sdp"
+            android:text="Date"
+            android:textColor="@color/inactiveColor"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_date_back_arrow"
+            app:layout_constraintStart_toEndOf="@id/edit_date_back_arrow"
+            app:layout_constraintTop_toTopOf="@+id/edit_date_back_arrow" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/today_date_cl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/week_days_bg"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_date_back_arrow"
+            app:layout_constraintWidth_percent="0.95">
+
+            <TextView
+                style="@style/Theme.Pedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="Today"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/day_cl_edit_date_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/rectangle_btn_dark"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="@+id/today_date_cl"
+            app:layout_constraintTop_toBottomOf="@+id/today_date_cl"
+            app:layout_constraintWidth_percent="0.32">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_date_et"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="20"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/rectangle_btn_dark"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout4"
+            app:layout_constraintStart_toEndOf="@+id/day_cl_edit_date_bs"
+            app:layout_constraintTop_toBottomOf="@+id/today_date_cl"
+            app:layout_constraintWidth_percent="0.27">
+
+            <Spinner
+                android:id="@+id/month_spinner_edit_date_bs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/rectangle_btn_dark"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/today_date_cl"
+            app:layout_constraintTop_toBottomOf="@+id/today_date_cl"
+            app:layout_constraintWidth_percent="0.27">
+
+            <Spinner
+                android:id="@+id/year_spinner_edit_date_bs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_button_date_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="0dp"
+            android:backgroundTint="@color/primaryColor"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/save_txt_btm_sheet"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+            app:layout_constraintWidth_percent="0.88" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    EDIT TIME BOTTOM SHEET LAYOUT BELOW-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/change_time_bs"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/edit_time_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Time"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintStart_toEndOf="@+id/edit_time_back_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bs_time_cl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/week_days_bg"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_time_back_arrow"
+            app:layout_constraintWidth_percent="0.95">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10:00 am - 11:00 am"
+                android:gravity="center"
+                style="@style/Theme.Pedometer"
+                android:textStyle="bold"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/inactiveColor"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/from_txt_time_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="From"
+            android:textColor="@color/inactiveColor"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bs_time_cl" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/start_time_cl_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.27"
+            android:background="@drawable/rectangle_btn_dark"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/from_txt_time_bs" >
+
+            <EditText
+                style="@style/Theme.Pedometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_bold"
+                android:text="10"
+                android:numeric="integer"
+                android:maxLength="2"
+                android:padding="@dimen/_8sdp"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/inactiveColor"
+            android:textSize="@dimen/_25sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/start_time_cl_bs"
+            app:layout_constraintEnd_toStartOf="@+id/start2_time_cl_bs"
+            app:layout_constraintStart_toEndOf="@+id/start_time_cl_bs"
+            app:layout_constraintTop_toTopOf="@+id/start_time_cl_bs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/start2_time_cl_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/rectangle_btn_dark"
+            app:layout_constraintEnd_toStartOf="@+id/am_pm_bs"
+            app:layout_constraintStart_toEndOf="@+id/start_time_cl_bs"
+            app:layout_constraintTop_toBottomOf="@+id/from_txt_time_bs"
+            app:layout_constraintWidth_percent="0.27">
+
+            <EditText
+                style="@style/Theme.Pedometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:fontFamily="@font/poppins_bold"
+                android:padding="@dimen/_8sdp"
+                android:text="00"
+                android:numeric="integer"
+                android:maxLength="2"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/am_pm_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.27"
+            android:background="@drawable/rectangle_btn_dark"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/from_txt_time_bs" >
+
+            <TextView
+                android:id="@+id/start_time_am_pm_bs"
+                style="@style/Theme.Pedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="AM"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/switch_right"
+                app:layout_constraintStart_toEndOf="@id/start_time_am_pm_bs"
+                app:layout_constraintBottom_toBottomOf="@+id/start_time_am_pm_bs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/start_time_am_pm_bs" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/to_txt_time_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:text="To"
+            android:textColor="@color/inactiveColor"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/start_time_cl_bs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/end_time_cl_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.27"
+            android:background="@drawable/rectangle_btn_dark"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/to_txt_time_bs" >
+
+            <androidx.appcompat.widget.AppCompatEditText
+                style="@style/Theme.Pedometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="11"
+                android:numeric="integer"
+                android:maxLength="2"
+                android:padding="@dimen/_8sdp"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textColor="@color/inactiveColor"
+            android:textSize="@dimen/_25sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/end_time_cl_bs"
+            app:layout_constraintEnd_toStartOf="@+id/end2_time_cl_bs"
+            app:layout_constraintStart_toEndOf="@+id/end_time_cl_bs"
+            app:layout_constraintTop_toTopOf="@+id/end_time_cl_bs" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/end2_time_cl_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/rectangle_btn_dark"
+            app:layout_constraintEnd_toStartOf="@+id/am_pm_bs"
+            app:layout_constraintStart_toEndOf="@+id/end_time_cl_bs"
+            app:layout_constraintTop_toBottomOf="@+id/to_txt_time_bs"
+            app:layout_constraintWidth_percent="0.27">
+
+            <EditText
+                style="@style/Theme.Pedometer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="00"
+                android:numeric="integer"
+                android:maxLength="2"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/end_am_pm_bs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.27"
+            android:background="@drawable/rectangle_btn_dark"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/to_txt_time_bs" >
+
+            <TextView
+                android:id="@+id/end_tm_am_pm_bs"
+                style="@style/Theme.Pedometer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:text="PM"
+                android:textSize="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/switch_left"
+                app:layout_constraintStart_toEndOf="@id/end_tm_am_pm_bs"
+                app:layout_constraintBottom_toBottomOf="@+id/end_tm_am_pm_bs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/end_tm_am_pm_bs" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_button_time_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryColor"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/save_txt_btm_sheet"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:cornerRadius="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/end_time_cl_bs"
+            app:layout_constraintWidth_percent="0.88" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button_time_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/emptyColor"
+            android:fontFamily="@font/poppins_bold"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/cancel_txt_btm_sheet"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/save_button_time_bs"
+            app:layout_constraintWidth_percent="0.88" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

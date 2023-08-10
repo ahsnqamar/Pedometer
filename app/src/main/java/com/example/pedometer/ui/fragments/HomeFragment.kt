@@ -9,27 +9,20 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pedometer.R
+import com.example.pedometer.bottomsheets.EditStepsSheet
 import com.example.pedometer.databinding.FragmentHomeBinding
-import com.example.pedometer.databinding.PopUpLayoutBinding
 import com.example.pedometer.ui.adapters.AddWaterAdapter
 import com.example.pedometer.models.AddWaterModel
 import com.example.pedometer.utils.PopUtils
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.ValueFormatter
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val adapter by lazy { AddWaterAdapter() }
+
+
+    private lateinit var editStepsSheet: EditStepsSheet
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +33,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+        editStepsSheet = EditStepsSheet()
 
 
         binding.waterRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -68,7 +62,17 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_home_menu_to_todayActivityFragment)
         }
 
+        binding.editCard.setOnClickListener {
+            findNavController().navigate(R.id.action_home_menu_to_editStepsSheet)
+        }
+
+        binding.waterProgress.setOnClickListener {
+            findNavController().navigate(R.id.action_home_menu_to_waterIntakeSheet)
+        }
+
     }
+
+
 
 
     private val buttonCallbacks = mapOf(
@@ -86,6 +90,7 @@ class HomeFragment : Fragment() {
         return list
 
     }
+
 
 
 /*    private fun setUpBarChart(barChart: BarChart) {

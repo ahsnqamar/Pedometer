@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bottom_sheet_bg"
+    android:backgroundTint="@color/secondaryColor"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/drink_water_txt"
+        style="@style/Theme.Pedometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Drink Water"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/water_intake_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        app:layout_constraintBottom_toBottomOf="@+id/drink_water_txt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/drink_water_txt"
+        app:thumbTint="@color/white"
+        app:track="@drawable/custom_track" />
+
+    <TextView
+        android:id="@+id/water_intake_info_txt"
+        style="@style/Theme.Pedometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:text="@string/water_intake_info_txt_btm_sheet"
+        android:textColor="@color/inactiveColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drink_water_txt" />
+
+    <TextView
+        style="@style/Theme.Pedometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goal"
+        android:textColor="@color/inactiveColor"
+        app:layout_constraintBottom_toBottomOf="@+id/goal_constraint_water_bs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/goal_constraint_water_bs" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/goal_constraint_water_bs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/background_btn_today"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/water_intake_info_txt"
+        app:layout_constraintWidth_percent="0.5">
+
+        <EditText
+            android:id="@+id/goal_et_water_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
+            android:paddingVertical="@dimen/_10sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:text="500"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="ml"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/goal_et_water_bs"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/goal_edit_img"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:src="@drawable/edit_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        style="@style/Theme.Pedometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cup Capacity"
+        android:textColor="@color/inactiveColor"
+        app:layout_constraintBottom_toBottomOf="@+id/cup_cap_constraint_water_bs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cup_cap_constraint_water_bs" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cup_cap_constraint_water_bs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/background_btn_today"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/goal_constraint_water_bs"
+        app:layout_constraintWidth_percent="0.5">
+
+        <EditText
+            android:id="@+id/cup_et_water_bs"
+            style="@style/Theme.Pedometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:inputType="numberDecimal"
+            android:maxLength="5"
+            android:paddingVertical="@dimen/_10sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:text="200"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="ml"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cup_et_water_bs"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/cup_edit_img"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:src="@drawable/edit_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capacity Units"
+        style="@style/Theme.Pedometer"
+        android:textColor="@color/inactiveColor"
+        app:layout_constraintBottom_toBottomOf="@+id/cap_unit_constraint_water_bs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cap_unit_constraint_water_bs" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cap_unit_constraint_water_bs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:background="@drawable/background_btn_today"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cup_cap_constraint_water_bs"
+        app:layout_constraintWidth_percent="0.5">
+
+
+
+        <TextView
+            android:id="@+id/unit_tv_water_bs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:text="ml"
+            android:paddingVertical="@dimen/_10sdp"
+            android:paddingStart="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/unit_edit_img"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:src="@drawable/switch_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_button_water_bs"
+        style="@style/Theme.Pedometer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryColor"
+        android:fontFamily="@font/poppins_bold"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/save_txt_btm_sheet"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cap_unit_constraint_water_bs"
+        app:layout_constraintWidth_percent="0.88" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancel_button_water_bs"
+        style="@style/Theme.Pedometer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/emptyColor"
+        android:fontFamily="@font/poppins_bold"
+        android:padding="@dimen/_8sdp"
+        android:text="@string/cancel_txt_btm_sheet"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save_button_water_bs"
+        app:layout_constraintWidth_percent="0.88" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
