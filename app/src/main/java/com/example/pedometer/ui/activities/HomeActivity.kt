@@ -11,7 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.pedometer.R
 import com.example.pedometer.databinding.ActivityHomeBinding
 
-class HomeActivity : AppCompatActivity() {
+class    HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 

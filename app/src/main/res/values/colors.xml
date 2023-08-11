@@ -23,5 +23,6 @@
     <color name="stepsColor">#77DD77</color>
     <color name="caloriesColor">#FF6B00</color>
     <color name="distanceColor">#8785FF</color>
+    <color name="caloriesInactiveColor">#6E3C18</color>
 
 </resources>

@@ -24,6 +24,8 @@
     <string name="cancel_txt_btm_sheet">Cancel</string>
     <string name="water_intake_txt_btm_sheet">Water Intake</string>
     <string name="water_intake_info_txt_btm_sheet">Set up &amp; track your daily water intake routine.</string>
+    <string name="challenges_txt">Challenges</string>
+    <string name="user_motivation_txt">Begin your journey today and pave the path to a stronger, healthier you. The only way to reach your destination is by taking that first step!</string>
 
 
 </resources>

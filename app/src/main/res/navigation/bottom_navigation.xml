@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_home_menu_to_waterIntakeSheet"
             app:destination="@id/waterIntakeSheet" />
+        <action
+            android:id="@+id/action_home_menu_to_challengesFragment"
+            app:destination="@id/challengesFragment" />
     </fragment>
 
     <fragment
@@ -66,6 +69,26 @@
         android:id="@+id/waterIntakeSheet"
         android:name="com.example.pedometer.bottomsheets.WaterIntakeSheet"
         android:label="WaterIntakeSheet" />
+    <fragment
+        android:id="@+id/challengesFragment"
+        android:name="com.example.pedometer.ui.fragments.ChallengesFragment"
+        android:label="fragment_challenges"
+        tools:layout="@layout/fragment_challenges" >
+        <action
+            android:id="@+id/action_challengesFragment_to_home_menu"
+            app:destination="@id/home_menu" />
+        <action
+            android:id="@+id/action_challengesFragment_to_singleChallengeFragment"
+            app:destination="@id/singleChallengeFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/singleChallengeFragment"
+        android:name="com.example.pedometer.ui.fragments.SingleChallengeFragment"
+        android:label="fragment_single_challenge"
+        tools:layout="@layout/fragment_single_challenge">
+
+    </fragment>
 
 
 </navigation>

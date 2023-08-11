@@ -70,6 +70,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_home_menu_to_waterIntakeSheet)
         }
 
+        binding.challengesCard.setOnClickListener {
+            findNavController().navigate(R.id.action_home_menu_to_challengesFragment)
+        }
+
     }
 
 
