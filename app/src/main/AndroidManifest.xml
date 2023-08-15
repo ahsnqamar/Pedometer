@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Pedometer"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.OnBoardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.HomeActivity"
             android:exported="false" />
         <activity

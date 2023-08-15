@@ -1,9 +1,10 @@
 package com.example.pedometer.models
 
-import java.lang.reflect.Constructor
+import java.io.Serializable
+
 
 data class ChallengesModel(
-    val id: Int ?= null,
+    val id: Int? = null,
     val name: String,
     val challengeSteps: String,
     val challengeDays: String,
@@ -11,13 +12,22 @@ data class ChallengesModel(
     val challengeStatus: String,
     val challengeProgress: String,
 
-) {
+    ) : Serializable {
+
     constructor(
         name: String,
         challengeSteps: String,
         challengeDays: String,
         challengeType: String,
         challengeStatus: String,
-    ) : this(null, name, challengeSteps, challengeDays, challengeType, challengeStatus,"")
-}
+    ) : this(
+        null,
+        name,
+        challengeSteps,
+        challengeDays,
+        challengeType,
+        challengeStatus,
+        ""
+    )
 
+}

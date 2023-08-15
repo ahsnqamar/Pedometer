@@ -6,22 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pedometer.R
 import com.example.pedometer.databinding.FragmentChallengesBinding
 import com.example.pedometer.models.ChallengesModel
 import com.example.pedometer.ui.adapters.ChallengesAdapter
-import com.example.pedometer.viewmodels.ChallengesViewModel
 
 
 class ChallengesFragment : Fragment() {
 
     private lateinit var binding: FragmentChallengesBinding
     private val adapter by lazy {  ChallengesAdapter() }
-    private val challengesViewModel: ChallengesViewModel by viewModels()
 
 
 
@@ -43,8 +39,6 @@ class ChallengesFragment : Fragment() {
 
         val challengesList = getChallengesList()
 
-
-
         adapter.setData(challengesList)
 
         return binding.root
@@ -61,12 +55,8 @@ class ChallengesFragment : Fragment() {
 
         binding.beginnerCard1.setOnClickListener {
             val dataToSend = ChallengesModel(binding.bCard1MTxt.text.toString(), binding.bIcTopTxt1.text.toString(), binding.bIcBtmTxt1.text.toString(), "beginners", "Not Started")
-            println("Data to send: $dataToSend")
-            challengesViewModel.setChallengesModel(dataToSend)
-            challengesViewModel.challengesModel.observe(viewLifecycleOwner) {
-                println("Challenge: $it")
-            }
-            findNavController().navigate(R.id.action_challengesFragment_to_singleChallengeFragment)
+            val action = ChallengesFragmentDirections.actionChallengesFragmentToSingleChallengeFragment(dataToSend)
+            findNavController().navigate(action)
         }
 
 

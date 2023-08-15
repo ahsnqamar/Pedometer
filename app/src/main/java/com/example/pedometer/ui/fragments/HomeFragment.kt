@@ -1,16 +1,26 @@
 package com.example.pedometer.ui.fragments
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pedometer.R
 import com.example.pedometer.bottomsheets.EditStepsSheet
 import com.example.pedometer.databinding.FragmentHomeBinding
+import com.example.pedometer.databinding.ResetDialogBinding
+import com.example.pedometer.databinding.TurnoffDialogBinding
 import com.example.pedometer.ui.adapters.AddWaterAdapter
 import com.example.pedometer.models.AddWaterModel
 import com.example.pedometer.utils.PopUtils
@@ -58,6 +68,8 @@ class HomeFragment : Fragment() {
             PopUtils.showPopUpWindow(requireContext(), it, R.layout.pop_up_layout,buttonCallbacks )
         }
 
+
+
         binding.pausePlayCard.setOnClickListener {
             findNavController().navigate(R.id.action_home_menu_to_todayActivityFragment)
         }
@@ -80,9 +92,47 @@ class HomeFragment : Fragment() {
 
 
     private val buttonCallbacks = mapOf(
-        R.id.history_card_popup to { findNavController().navigate(R.id.action_home_menu_to_historyFragment) }
+        R.id.history_card_popup to { findNavController().navigate(R.id.action_home_menu_to_historyFragment) },
+        R.id.reset_card_popup to {showResetDialog()},
+        R.id.off_card_popup to {showTurnOffDialog()}
     )
 
+    private fun showTurnOffDialog() {
+        val bind = TurnoffDialogBinding.inflate(layoutInflater)
+        val dialogue = AlertDialog.Builder(requireContext())
+            .setView(bind.root)
+            .create()
+        dialogue.setCancelable(false)
+        dialogue.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        bind.cancelButtonOffDialog.setOnClickListener {
+            println("Cancel button clicked")
+            dialogue.dismiss()
+        }
+        bind.offButtonOffDialog.setOnClickListener {
+            println("Reset button clicked")
+            dialogue.dismiss()
+        }
+        dialogue.show()
+    }
+
+    private fun showResetDialog() {
+        val bind = ResetDialogBinding.inflate(layoutInflater)
+        val dialogue = AlertDialog.Builder(requireContext())
+            .setView(bind.root)
+            .create()
+        dialogue.setCancelable(false)
+        dialogue.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        bind.cancelButtonResetDialog.setOnClickListener {
+            println("Cancel button clicked")
+            dialogue.dismiss()
+        }
+        bind.resetButtonResetDialog.setOnClickListener {
+            println("Reset button clicked")
+            dialogue.dismiss()
+        }
+        dialogue.show()
+
+    }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun getWaterList(): List<AddWaterModel> {

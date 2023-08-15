@@ -41,6 +41,28 @@
             android:layout_marginRight="@dimen/_12sdp"
             android:src="@drawable/more_vertical" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/pro_card_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/pro_bg_home"
+            android:layout_gravity="end"
+            android:layout_marginRight="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:paddingHorizontal="@dimen/_12sdp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PRO"
+                android:fontFamily="@font/poppins_bold"
+                style="@style/Theme.Pedometer"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.Guideline
@@ -70,6 +92,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/circular_progress"
+                app:layout_constraintBottom_toBottomOf="@+id/circularProgressIndicator"
+                app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
+                app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
+                app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator" />
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/circularProgressIndicator"
@@ -111,8 +144,29 @@
                 app:layout_constraintTop_toTopOf="@+id/circularProgressIndicator"
                 app:layout_constraintVertical_bias="0.549" />
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/paused_card_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/white"
+                android:minHeight="0dp"
+                app:layout_constraintWidth_percent="0.2"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@+id/circularSteps"
+                app:layout_constraintStart_toStartOf="@+id/circularSteps"
+                app:layout_constraintTop_toBottomOf="@+id/circularSteps">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paused"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black" />
+            </com.google.android.material.card.MaterialCardView>
+
             <TextView
                 android:id="@+id/target_steps"
+                android:visibility="gone"
                 style="@style/Theme.Pedometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -455,8 +509,8 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="142dp"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_5sdp"

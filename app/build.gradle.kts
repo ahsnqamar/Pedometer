@@ -2,6 +2,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
 
 }
 
@@ -39,6 +40,8 @@ android {
     }
 
 
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -71,9 +74,6 @@ dependencies {
     implementation("com.google.android.material:material:1.5.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.intuit.sdp:sdp-android:1.1.0")
-
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-
-
 
 }
