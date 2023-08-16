@@ -19,19 +19,12 @@ class SplashActivity : ComponentActivity() {
         setContentView(R.layout.activity_splash)
 
         // go to next activity after 3 seconds
-//        Handler().postDelayed({
-//            startActivity(Intent(this, HomeActivity::class.java))
-//            finish()
-//        }, 1000)
+        Handler().postDelayed({
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }, 1000)
 
-
-
-
-
-
-
-
-
+        //startActivity(Intent(this, OnBoardingActivity::class.java))
 
     }
 

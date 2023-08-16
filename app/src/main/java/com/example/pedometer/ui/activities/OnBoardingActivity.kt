@@ -19,7 +19,7 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     private fun initListener() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.starting_fragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.starting_fragment_container) as NavHostFragment
         val navController = navHostFragment.findNavController()
 
     }

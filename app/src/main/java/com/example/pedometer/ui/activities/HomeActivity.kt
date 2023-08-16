@@ -3,13 +3,16 @@ package com.example.pedometer.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.activity.addCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.pedometer.R
 import com.example.pedometer.databinding.ActivityHomeBinding
+import kotlin.system.exitProcess
 
 class    HomeActivity : AppCompatActivity() {
 
@@ -77,6 +80,15 @@ class    HomeActivity : AppCompatActivity() {
         }
 
         binding.bottomNavView.setupWithNavController(navController)
+
+        onBackPressedDispatcher.addCallback(this) {
+            //showTurnOffDialog()
+            println("Back button pressed activity")
+            finish()
+            // close the app
+            //exitProcess(0)
+        }
+
 
     }
 

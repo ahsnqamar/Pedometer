@@ -26,14 +26,14 @@ class AddWaterAdapter : RecyclerView.Adapter<AddWaterAdapter.ViewHolder>() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val addWaterModel = mAllGlasses[position]
-        println("addWaterModel: $addWaterModel")
+        //println("addWaterModel: $addWaterModel")
         holder.binding.waterGlass.setImageDrawable(holder.itemView.context.getDrawable(addWaterModel.waterImage))
         holder.binding.waterGlassText.text = addWaterModel.waterValue
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(glassesList: List<AddWaterModel>) {
-        println("glassesList: $glassesList")
+        //println("glassesList: $glassesList")
         mAllGlasses.clear()
         mAllGlasses.addAll(glassesList)
         notifyDataSetChanged()

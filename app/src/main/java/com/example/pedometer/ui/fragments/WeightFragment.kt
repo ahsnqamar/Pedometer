@@ -1,6 +1,5 @@
 package com.example.pedometer.ui.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,14 +8,12 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.example.pedometer.R
-import com.example.pedometer.databinding.FragmentGenderBinding
-import com.example.pedometer.ui.activities.HomeActivity
+import com.example.pedometer.databinding.FragmentWeightBinding
 
 
-class GenderFragment : Fragment() {
+class WeightFragment : Fragment() {
 
-    private lateinit var binding: FragmentGenderBinding
-
+    private lateinit var binding: FragmentWeightBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,21 +23,20 @@ class GenderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentGenderBinding.inflate(inflater, container, false)
+        binding= FragmentWeightBinding.inflate(inflater, container, false)
 
+        binding.nextBtnWeight.setOnClickListener {
+            findNavController().navigate(R.id.action_weightFragment_to_heightFragment)
+        }
 
-        binding.nextBtnGender.setOnClickListener {
-            findNavController().navigate(R.id.action_genderFragment_to_weightFragment)
+        binding.backBtnWeight.setOnClickListener {
+            findNavController().navigate(R.id.action_weightFragment_to_genderFragment)
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // finish fragment
-            requireActivity().finish()
+            findNavController().navigate(R.id.action_weightFragment_to_genderFragment)
         }
 
-        binding.skipTxtGender.setOnClickListener {
-            startActivity(Intent(requireContext(), HomeActivity::class.java))
-        }
 
         return binding.root
     }

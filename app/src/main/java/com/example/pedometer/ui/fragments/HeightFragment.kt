@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.example.pedometer.R
-import com.example.pedometer.databinding.FragmentGenderBinding
+import com.example.pedometer.databinding.FragmentHeightBinding
 import com.example.pedometer.ui.activities.HomeActivity
 
+class HeightFragment : Fragment() {
 
-class GenderFragment : Fragment() {
+    private lateinit var binding: FragmentHeightBinding
 
-    private lateinit var binding: FragmentGenderBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,20 +26,19 @@ class GenderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding= FragmentGenderBinding.inflate(inflater, container, false)
+        binding= FragmentHeightBinding.inflate(inflater, container, false)
 
+        binding.nextBtnHeight.setOnClickListener {
+            // start home activity
+            startActivity(Intent(requireActivity(), HomeActivity::class.java))
+        }
 
-        binding.nextBtnGender.setOnClickListener {
-            findNavController().navigate(R.id.action_genderFragment_to_weightFragment)
+        binding.backBtnHeight.setOnClickListener {
+            findNavController().navigate(R.id.action_heightFragment_to_weightFragment)
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            // finish fragment
-            requireActivity().finish()
-        }
-
-        binding.skipTxtGender.setOnClickListener {
-            startActivity(Intent(requireContext(), HomeActivity::class.java))
+            findNavController().navigate(R.id.action_heightFragment_to_weightFragment)
         }
 
         return binding.root

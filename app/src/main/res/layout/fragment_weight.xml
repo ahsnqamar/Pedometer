@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".ui.fragments.WeightFragment">
+
+
+    <TextView
+        android:id="@+id/skip_txt_weight"
+        style="@style/Theme.Pedometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        android:textColor="@color/primaryColor"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline_weight" />
+
+    <TextView
+        android:id="@+id/whats_weight_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:fontFamily="@font/poppins_bold"
+        android:gravity="center"
+        android:text="What's your weight?"
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@+id/skip_txt_weight" />
+
+    <TextView
+        android:id="@+id/whats_weight_txt_desc"
+        style="@style/Theme.Pedometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:text="Required for distance &amp; speed calculation"
+        android:textColor="@color/tertiaryColor"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="@+id/whats_weight_txt"
+        app:layout_constraintStart_toStartOf="@+id/whats_weight_txt"
+        app:layout_constraintTop_toBottomOf="@+id/whats_weight_txt" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/kg_btn_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="24dp"
+        android:backgroundTint="@color/primaryColor"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Kg"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:cornerRadius="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="@+id/whats_weight_txt_desc"
+        app:layout_constraintTop_toBottomOf="@+id/whats_weight_txt_desc" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/lbs_btn_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@color/primaryColor"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Lbs"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:cornerRadius="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="@+id/whats_weight_txt_desc"
+        app:layout_constraintTop_toBottomOf="@+id/whats_weight_txt_desc" />
+
+    <TextView
+        android:id="@+id/weight_txt_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:text="75kg"
+        android:layout_marginTop="@dimen/_14sdp"
+        style="@style/Theme.Pedometer"
+        android:textSize="@dimen/_30sdp"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline_weight"
+        app:layout_constraintStart_toStartOf="@+id/start_guideline_weight"
+        app:layout_constraintTop_toBottomOf="@+id/lbs_btn_weight" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/height_seekbar_height"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/end_guideline_weight"
+        app:layout_constraintStart_toStartOf="@+id/start_guideline_weight"
+        android:thumbTint="@color/primaryColor"
+        android:backgroundTint="@color/tertiaryColor"
+        android:layout_marginTop="@dimen/_14sdp"
+        app:layout_constraintTop_toBottomOf="@+id/weight_txt_weight"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/height_seekbar_height"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_1sdp"
+            android:src="@drawable/ellipse" />
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center"
+            android:src="@drawable/rectangle_sml" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:src="@drawable/ellipse" />
+
+    </LinearLayout>
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next_btn_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline_weight"
+        android:layout_marginBottom="@dimen/_14sdp"
+        app:layout_constraintWidth_percent="0.25"
+        app:cornerRadius="@dimen/_20sdp"
+        android:text="Next"
+        style="@style/Theme.Pedometer"
+        android:textColor="@color/black"
+        app:icon="@drawable/arrow_right"
+        app:iconTint="@color/black"
+        app:iconGravity="end"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/back_btn_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circular_button"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="@dimen/_17sdp"
+        app:layout_constraintStart_toStartOf="@+id/start_guideline_weight">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guideline_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/end_guideline_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
