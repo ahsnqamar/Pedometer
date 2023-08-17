@@ -45,22 +45,22 @@
             android:id="@+id/pro_card_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/pro_bg_home"
             android:layout_gravity="end"
             android:layout_marginRight="@dimen/_12sdp"
-            android:paddingVertical="@dimen/_4sdp"
-            android:paddingHorizontal="@dimen/_12sdp">
+            android:background="@drawable/pro_bg_home"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:paddingVertical="@dimen/_4sdp">
+
             <TextView
+                style="@style/Theme.Pedometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PRO"
                 android:fontFamily="@font/poppins_bold"
-                style="@style/Theme.Pedometer"
+                android:text="PRO"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -146,28 +146,27 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/paused_card_home"
-                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="@color/white"
                 android:minHeight="0dp"
-                app:layout_constraintWidth_percent="0.2"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="@+id/circularSteps"
                 app:layout_constraintStart_toStartOf="@+id/circularSteps"
-                app:layout_constraintTop_toBottomOf="@+id/circularSteps">
+                app:layout_constraintTop_toBottomOf="@+id/circularSteps"
+                app:layout_constraintWidth_percent="0.2">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Paused"
                     android:layout_gravity="center"
+                    android:text="Paused"
                     android:textColor="@color/black" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/target_steps"
-                android:visibility="visible"
                 style="@style/Theme.Pedometer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -176,6 +175,7 @@
                 android:text="6000 Steps"
                 android:textColor="@color/tertiaryColor"
                 android:textSize="@dimen/_9sdp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@+id/circularProgressIndicator"
                 app:layout_constraintStart_toStartOf="@+id/circularProgressIndicator"
                 app:layout_constraintTop_toBottomOf="@+id/circularSteps" />
@@ -540,6 +540,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/water_text_home"
                     style="@style/Theme.Pedometer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -581,8 +582,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/more_text"
                         app:layout_constraintTop_toTopOf="parent" />
-
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -591,8 +590,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="@id/water_droplet"
-                    app:layout_constraintTop_toBottomOf="@id/water_droplet" />
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toStartOf="@+id/add_water"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/water_droplet"
+                    tools:listitem="@layout/add_water_layout" />
 
                 <ImageView
                     android:id="@+id/add_water"
@@ -600,10 +605,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_7sdp"
                     android:src="@drawable/add_water"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/water_rv"
                     app:layout_constraintTop_toTopOf="@id/water_rv" />
 
                 <TextView
+                    android:id="@+id/add_water_text"
                     style="@style/Theme.Pedometer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

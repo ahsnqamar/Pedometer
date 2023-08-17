@@ -3,13 +3,14 @@ package com.example.pedometer.ui.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pedometer.databinding.AddWaterLayoutBinding
 import com.example.pedometer.models.AddWaterModel
 
 class AddWaterAdapter : RecyclerView.Adapter<AddWaterAdapter.ViewHolder>() {
 
-    private val mAllGlasses: MutableList<AddWaterModel> = mutableListOf()
+    private val mAllGlasses: MutableLiveData<MutableList<AddWaterModel>> = MutableLiveData()
 
     class ViewHolder(val binding: AddWaterLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,55 +21,20 @@ class AddWaterAdapter : RecyclerView.Adapter<AddWaterAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return mAllGlasses.size
+        return mAllGlasses.value?.size ?: 0
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val addWaterModel = mAllGlasses[position]
+        val addWaterModel = mAllGlasses.value?.get(position)
         //println("addWaterModel: $addWaterModel")
-        holder.binding.waterGlass.setImageDrawable(holder.itemView.context.getDrawable(addWaterModel.waterImage))
-        holder.binding.waterGlassText.text = addWaterModel.waterValue
+        holder.binding.waterGlass.setImageDrawable(holder.itemView.context.getDrawable(addWaterModel!!.waterImage))
+        holder.binding.waterGlassText.text = "${addWaterModel.waterValue} ${addWaterModel.capacityUnits}"
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(glassesList: List<AddWaterModel>) {
-        //println("glassesList: $glassesList")
-        mAllGlasses.clear()
-        mAllGlasses.addAll(glassesList)
+        mAllGlasses.value = glassesList.toMutableList()
         notifyDataSetChanged()
     }
 }
-
-
-/*
-class AddWaterAdapter(): RecyclerView.Adapter<AddWaterAdapter.ViewHolder>() {
-
-    private val mAllGlasses: MutableList<AddWaterModel> = mutableListOf()
-
-    class ViewHolder(val binding: AddWaterLayoutBinding): RecyclerView.ViewHolder(binding.root)
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(AddWaterLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-    }
-
-    override fun getItemCount(): Int {
-        return mAllGlasses.size
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val addWaterModel = mAllGlasses[position]
-        println("addWaterModel: $addWaterModel")
-        holder.binding.waterGlass.setImageDrawable(addWaterModel.waterImage)
-        holder.binding.waterGlassText.text = addWaterModel.waterValue
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(glassesList: List<AddWaterModel>){
-        println("glassesList: $glassesList")
-        mAllGlasses.clear()
-        mAllGlasses.addAll(glassesList)
-        notifyDataSetChanged()
-    }
-
-}*/

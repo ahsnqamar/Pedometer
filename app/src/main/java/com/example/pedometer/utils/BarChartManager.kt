@@ -3,10 +3,12 @@ package com.example.pedometer.utils
 import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Color
+import android.graphics.Paint
 import android.os.Build
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.toColorInt
 import com.example.pedometer.R
@@ -96,8 +98,8 @@ class BarChartManager(private val resources: Resources) {
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
         xAxis.setDrawAxisLine(false)
-
         xAxis.valueFormatter = DayAxisValueFormatter()
+
     }
 
     private fun customizeYAxis(axis: YAxis, maxY: Float) {
@@ -109,6 +111,7 @@ class BarChartManager(private val resources: Resources) {
         axis.enableAxisLineDashedLine(20f, 5f, 0f)
 
         axis.valueFormatter = CustomYAxisValueFormatter()
+
     }
 
 
@@ -136,6 +139,8 @@ class BarChartManager(private val resources: Resources) {
 
                 // rename with today if day matches
                 if (currentDay.equals(today,ignoreCase = true)){
+                    // change today color
+
                     return "Today"
                 }
 
@@ -144,5 +149,6 @@ class BarChartManager(private val resources: Resources) {
             return ""
             //return days.getOrNull(value.toInt()) ?: ""
         }
+
     }
 }

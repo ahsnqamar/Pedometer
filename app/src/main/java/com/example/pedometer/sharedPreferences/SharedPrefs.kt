@@ -13,6 +13,8 @@ class SharedPrefs(context: Context) {
     private val timeKey = "userTime"
 
 
+
+
     fun saveSteps(steps: Int) {
         editor.putInt(stepKey, steps)
         editor.apply()
@@ -92,6 +94,67 @@ class SharedPrefs(context: Context) {
     fun setUserGoal(goal: Int) {
         editor.putInt("userGoal", goal)
         editor.apply()
+    }
+
+
+    // water data below -------------------------------------------------------------------------------------------------------------------------- //
+
+    private val waterPrefsName = "WaterPrefs"
+    private val waterPrefs = context.getSharedPreferences(waterPrefsName, Context.MODE_PRIVATE)
+    private val waterEditor = waterPrefs.edit()
+
+    fun getCupSize(): Int {
+        return waterPrefs.getInt("cupSize", 0)
+    }
+
+    fun setCupSize(cupSize: Int) {
+        waterEditor.putInt("cupSize", cupSize)
+        waterEditor.apply()
+    }
+
+    fun saveWaterGoal(goal: Int) {
+        waterEditor.putInt("userWaterGoal", goal)
+        waterEditor.apply()
+    }
+
+    fun getWaterGoal(): Int {
+        return waterPrefs.getInt("userWaterGoal", 0)
+    }
+
+    fun getWaterUnits(): String {
+        return waterPrefs.getString("waterUnits", "ml")!!
+    }
+
+    fun setWaterUnits(units: String) {
+        waterEditor.putString("waterUnits", units)
+        waterEditor.apply()
+    }
+
+    fun setTrackWater(trackWater: Boolean) {
+        waterEditor.putBoolean("trackWater", trackWater)
+        waterEditor.apply()
+    }
+
+    fun getTrackWater(): Boolean {
+        return waterPrefs.getBoolean("trackWater", false)
+    }
+
+    fun setCurrentWaterIntake(currentWaterIntake: Int){
+        waterEditor.putInt("currentWaterIntake", currentWaterIntake)
+        waterEditor.apply()
+    }
+
+    fun getCurrentWaterIntake(): Int{
+        return waterPrefs.getInt("currentWaterIntake", 0)
+    }
+
+    fun setUnitsChanged(unitsChanged: Boolean){
+        waterEditor.putBoolean("unitsChanged", unitsChanged)
+        waterEditor.apply()
+    }
+
+    fun getUnitsChanged(): Boolean{
+        return waterPrefs.getBoolean("unitsChanged", false)
     }
 
 

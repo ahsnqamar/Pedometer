@@ -1,62 +1,51 @@
 package com.example.pedometer.ui.fragments
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import androidx.activity.addCallback
-import androidx.annotation.RequiresApi
-import androidx.core.view.setPadding
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pedometer.R
 import com.example.pedometer.bottomsheets.EditStepsSheet
+import com.example.pedometer.bottomsheets.WaterIntakeSheet
 import com.example.pedometer.databinding.FragmentHomeBinding
 import com.example.pedometer.databinding.ResetDialogBinding
 import com.example.pedometer.databinding.TurnoffDialogBinding
-import com.example.pedometer.ui.adapters.AddWaterAdapter
-import com.example.pedometer.models.AddWaterModel
 import com.example.pedometer.services.StepCounterService
 import com.example.pedometer.sharedPreferences.SharedPrefs
+import com.example.pedometer.ui.adapters.AddWaterAdapter
 import com.example.pedometer.utils.BarChartManager
 import com.example.pedometer.utils.PopUtils
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
+import com.example.pedometer.utils.WaterManager
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import java.text.DecimalFormat
-import java.util.Calendar
 
 
 class HomeFragment : Fragment(), OnChartValueSelectedListener {
 
-    private lateinit var binding: FragmentHomeBinding
+    lateinit var binding: FragmentHomeBinding
     private val adapter by lazy { AddWaterAdapter() }
     private lateinit var editStepsSheet: EditStepsSheet
     private lateinit var stepCounterService: StepCounterService
     private lateinit var sharedPrefs: SharedPrefs
-    private var goal: Int ?= null
+    private var goal: Int? = null
     private lateinit var barChartManager: BarChartManager
+    private lateinit var waterManager: WaterManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,26 +58,29 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
         goal = sharedPrefs.getUserGoal()
         stepCounterService = StepCounterService()
         barChartManager = BarChartManager(requireContext().resources)
+        waterManager = WaterManager(requireContext())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomeBinding.inflate(inflater,container,false)
+    ): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
         editStepsSheet = EditStepsSheet()
 
+        waterManager.registerTimeReceiver(requireContext())
+        init()
+        waterIntakeManagement()
+        serviceStartManagement()
+        initListener()
 
-        binding.waterRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.waterRv.adapter = adapter
+        return binding.root
+    }
 
-        val waterList = getWaterList()
-        println("waterList: $waterList")
-        adapter.setData(waterList)
-
+    private fun serviceStartManagement() {
         val isServiceRunning = sharedPrefs.getIsServiceRunning()
         println("isServiceRunning: $isServiceRunning")
-        if (isServiceRunning){
+        if (isServiceRunning) {
             startStepCounterService()
             binding.playPauseButton.setImageResource(R.drawable.pause)
             binding.pausePlayCard.backgroundTintList = resources.getColorStateList(R.color.secondaryColor)
@@ -102,21 +94,34 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
             binding.pausedCardHome.visibility = View.VISIBLE
             binding.targetSteps.visibility = View.GONE
         }
-
-        init()
-
-        initListener()
-
-
-
-        return binding.root
     }
 
-    private fun init(){
+    private fun waterIntakeManagement() {
+        //waterManager.deleteAllWaterData(requireContext())
+
+        binding.waterRv.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.waterRv.adapter = adapter
+        waterManager.getWaterData(requireContext()).observe(viewLifecycleOwner) { waterData ->
+            println("waterData: $waterData")
+            adapter.setData(waterData)
+        }
+        waterManager.calculateWaterIntake(requireContext())
+
+        /*        println("waterList: $waterList")
+                withContext(Dispatchers.Main){
+                    adapter.setData(waterList)
+                }*/
+
+    }
+
+    private fun init() {
         binding.targetSteps.text = "$goal steps"
         barChartManager.setUpBarChart(binding.barChartHome, generateSampleData())
         binding.barChartHome.setOnChartValueSelectedListener(this)
+
+        binding.addWaterText.text = "${sharedPrefs.getCupSize()} ${sharedPrefs.getWaterUnits()}"
     }
+
 
     private fun startStepCounterService() {
         val intent = Intent(requireContext(), StepCounterService::class.java)
@@ -154,6 +159,9 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
 
     override fun onResume() {
         super.onResume()
+        Log.i("resune", "onResume: ")
+        binding.waterTextHome.text = "Water: ${sharedPrefs.getCurrentWaterIntake()}/${sharedPrefs.getWaterGoal()} ${sharedPrefs.getWaterUnits()}"
+
         sharedPrefs.apply {
             binding.circularSteps.text = getSteps().toString()
             val decimalFormat = DecimalFormat("#0.00")
@@ -163,9 +171,23 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
             binding.circularProgressIndicator.progress = getSteps() * 100 / goal!! // 100 is the goal
         }
 
+        WaterIntakeSheet.waterIntakeListener = object : WaterIntakeSheet.WaterIntakeListener {
+            override fun onWaterIntakeChanged(cupSize: Int, waterGoal: Int, waterUnits: String) {
+                println("waterIntakeListener: $cupSize, $waterGoal, $waterUnits")
+                binding.addWaterText.text = "$cupSize $waterUnits"
+                binding.waterTextHome.text = "Water: ${sharedPrefs.getCurrentWaterIntake()}/$waterGoal $waterUnits"
+            }
+        }
+
+        WaterManager.currentWaterIntake = object : WaterManager.CurrentWaterIntake {
+            override fun onCurrentWaterIntakeChanged(currentWaterIntake: Int) {
+                println("currentWaterIntake: $currentWaterIntake")
+                binding.waterTextHome.text = "Water: $currentWaterIntake/${sharedPrefs.getWaterGoal()} ${sharedPrefs.getWaterUnits()}"
+            }
+        }
     }
 
-    private fun formatTime(time: Int): String{
+    private fun formatTime(time: Int): String {
         val hours = time / 60
         val minutes = time % 60
         val formattedTime = if (hours > 0) {
@@ -176,11 +198,10 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
         return formattedTime
     }
 
-
     private fun initListener() {
         binding.moreIconToolbarHome.setOnClickListener {
             println("More icon clicked")
-            PopUtils.showPopUpWindow(requireContext(), it, R.layout.pop_up_layout,buttonCallbacks )
+            PopUtils.showPopUpWindow(requireContext(), it, R.layout.pop_up_layout, buttonCallbacks)
         }
 
         binding.pausePlayCard.setOnClickListener {
@@ -219,19 +240,26 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
             findNavController().navigate(R.id.action_home_menu_to_challengesFragment)
         }
 
-/*        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            //showTurnOffDialog()
-            println("Back button pressed home")
-            requireActivity().finish()
-        }*/
+        binding.addWater.setOnClickListener {
+            if (sharedPrefs.getTrackWater())
+                waterManager.insertIntoWaterDB(requireContext()) //todo: add value to the parameter 200
+            else
+                Toast.makeText(requireContext(), "Please enable water tracking from settings", Toast.LENGTH_SHORT).show()
+        }
+
+        /*        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+                    //showTurnOffDialog()
+                    println("Back button pressed home")
+                    requireActivity().finish()
+                }*/
 
     }
 
 
     private val buttonCallbacks = mapOf(
         R.id.history_card_popup to { findNavController().navigate(R.id.action_home_menu_to_historyFragment) },
-        R.id.reset_card_popup to {showResetDialog()},
-        R.id.off_card_popup to {showTurnOffDialog()}
+        R.id.reset_card_popup to { showResetDialog() },
+        R.id.off_card_popup to { showTurnOffDialog() }
     )
 
     private fun showTurnOffDialog() {
@@ -271,22 +299,10 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
 
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
-    private fun getWaterList(): List<AddWaterModel> {
-        val list = ArrayList<AddWaterModel>()
-        list.add(AddWaterModel((R.drawable.water_glass), "200 ml"))
-        list.add(AddWaterModel((R.drawable.water_glass), "200 ml"))
-        list.add(AddWaterModel((R.drawable.water_glass), "200 ml"))
-        return list
-
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         LocalBroadcastManager.getInstance(requireContext()).unregisterReceiver(stepCountBroadcast)
     }
-
-
 
     private fun generateSampleData(): List<BarEntry> {
         return listOf(
@@ -298,15 +314,18 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
             BarEntry(5f, 0f),    // Saturday
             BarEntry(6f, 0f)     // Sunday
         )
+
+
+
     }
 
     override fun onValueSelected(e: Entry?, h: Highlight?) {
         println("Entry: $e")
         println("Highlight: $h")
-        if (e!=null){
+        if (e != null) {
             val xIndex = e.x.toInt()
             val yValue = e.y
-            if (xIndex == barChartManager.todayBarIndex){
+            if (xIndex == barChartManager.todayBarIndex) {
                 handleBarClick(xIndex, yValue)
             }
         }
@@ -320,7 +339,6 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
     override fun onNothingSelected() {
         println("Nothing selected")
     }
-
 
     /*    private fun setUpBarChart(barChart: BarChart) {
 
