@@ -11,19 +11,30 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Build
+import android.os.Handler
+import android.os.HandlerThread
 import android.os.IBinder
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.pedometer.R
+import com.example.pedometer.models.ChallengesModel
 import com.example.pedometer.models.StepCountModel
 import com.example.pedometer.sharedPreferences.SharedPrefs
 import com.example.pedometer.ui.activities.HomeActivity
+import com.example.pedometer.utils.ChallengesManager
+import com.example.pedometer.utils.StepsManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Calendar
+import java.util.concurrent.TimeUnit
 
 class StepCounterService : Service(), SensorEventListener {
 
@@ -32,12 +43,20 @@ class StepCounterService : Service(), SensorEventListener {
     private var previousTotalSteps = 0
     private lateinit var stepCountModel: StepCountModel
     private lateinit var sharedPrefs: SharedPrefs
+    private lateinit var stepsManager: StepsManager
+    private var serviceJob : Job ?= null
+    private var previousHours: Int = -1
+    private val challengesManager by lazy { ChallengesManager(this) }
+    private val challengesModel by lazy { ChallengesModel() }
 
     override fun onCreate() {
         super.onCreate()
         sharedPrefs = SharedPrefs(this)
         sendServiceNotification()
         stepCountModel = StepCountModel()
+        stepsManager = StepsManager(this)
+        previousHours = sharedPrefs.getPreviousHours()
+
         println("StepCounterService created")
         // TODO: Remove this later
         sharedPrefs.setWeight(70)
@@ -45,6 +64,7 @@ class StepCounterService : Service(), SensorEventListener {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
         sensorManager = applicationContext.getSystemService(SENSOR_SERVICE) as SensorManager
         val stepSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
         if (stepSensor == null) {
@@ -53,7 +73,9 @@ class StepCounterService : Service(), SensorEventListener {
             sensorManager.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_FASTEST)
             Toast.makeText(this, "Step Counter Started", Toast.LENGTH_SHORT).show()
         }
+
         previousTotalSteps = sharedPrefs.getSteps()
+        startUpdatingTask()
         return START_STICKY
     }
 
@@ -81,11 +103,13 @@ class StepCounterService : Service(), SensorEventListener {
                     }
                     v1.await(); v2.await(); v3.await(); v4.await()
 
-                    updateStepCountSharedPrefs()
+                    challengesManager.updateProgress(this@StepCounterService, stepCountModel.steps.toString(), challengesModel.uniqueId!! )
 
                     withContext(Dispatchers.Main){
                         sendBroadcast()
                     }
+
+                    updateStepCountSharedPrefs()
                 }
             }
         }
@@ -159,7 +183,6 @@ class StepCounterService : Service(), SensorEventListener {
 
     }
 
-
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         println("accuracy changed to $accuracy for sensor $sensor")
     }
@@ -167,6 +190,8 @@ class StepCounterService : Service(), SensorEventListener {
     override fun onDestroy() {
         super.onDestroy()
         sensorManager.unregisterListener(this)
+        stopUpdatingTask()
+        sharedPrefs.setPreviousHours(previousHours)
         println("StepCounterService destroyed")
     }
 
@@ -205,6 +230,34 @@ class StepCounterService : Service(), SensorEventListener {
         // Step 4: Start the Service as a Foreground Service
         val notification = notificationBuilder.build()
         startForeground(101, notification)
+    }
+
+    private fun startUpdatingTask() {
+        val handlerThread = HandlerThread("HourlyUpdateThread")
+        handlerThread.start()
+
+        val handler = Handler(handlerThread.looper)
+
+        handler.post {
+            while (true) {
+                val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                println("Previous Hour: $previousHours")
+                println("Current Hour: $currentHour")
+                if (currentHour != previousHours) {
+                    println("here")
+                    previousHours = currentHour
+                    // Update the database
+                    stepsManager.insertIntoStepsDB(this@StepCounterService)
+                    println("Step Count Updated in DB: ${stepCountModel.steps}")
+                }
+
+                Thread.sleep(TimeUnit.HOURS.toMillis(1))
+            }
+        }
+    }
+
+    private fun stopUpdatingTask(){
+        serviceJob?.cancel()
     }
 
     companion object {

@@ -80,6 +80,9 @@
         <action
             android:id="@+id/action_challengesFragment_to_singleChallengeFragment"
             app:destination="@id/singleChallengeFragment" />
+        <action
+            android:id="@+id/action_challengesFragment_to_startedChallengeFragment"
+            app:destination="@id/startedChallengeFragment" />
 
     </fragment>
     <fragment
@@ -100,7 +103,13 @@
         android:id="@+id/startedChallengeFragment"
         android:name="com.example.pedometer.ui.fragments.StartedChallengeFragment"
         android:label="fragment_started_challenge"
-        tools:layout="@layout/fragment_started_challenge" />
+        tools:layout="@layout/fragment_started_challenge">
+
+        <argument
+            android:name="singleData"
+            app:argType="com.example.pedometer.models.ChallengesModel" />
+
+    </fragment>
 
 
 </navigation>

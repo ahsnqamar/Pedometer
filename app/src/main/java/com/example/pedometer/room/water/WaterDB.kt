@@ -23,5 +23,4 @@ abstract class WaterDB : RoomDatabase(){
             return  instance!!
         }
     }
-
 }

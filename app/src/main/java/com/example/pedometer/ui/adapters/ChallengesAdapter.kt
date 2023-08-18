@@ -34,13 +34,13 @@ class ChallengesAdapter: RecyclerView.Adapter<ChallengesAdapter.ViewHolder>(){
                 btmDaysTxtChallengeCard.setBackgroundResource(R.drawable.green_bg_challenge)
             } else {
                 progressChallengeCard.setBackgroundResource(R.drawable.calories_bg_small)
-                btmDaysTxtChallengeCard.setBackgroundColor(btmDaysTxtChallengeCard.context.resources.getColor(R.color.caloriesColor))
+                btmDaysTxtChallengeCard.setBackgroundResource(R.drawable.brown_bg_challenge)
             }
 
-            progressTxtChallengeCard.text = challengesModel.challengeProgress
-            progressChallengeCard.progress = challengesModel.challengeProgress.toInt()
+            progressTxtChallengeCard.text = "${challengesModel.challengeProgress}% completed"
+            println("challengesModel.challengeProgress: ${challengesModel.challengeProgress}")
+            progressChallengeCard.progress = challengesModel.challengeProgress!!.toInt()
         }
-
     }
 
     @SuppressLint("NotifyDataSetChanged")

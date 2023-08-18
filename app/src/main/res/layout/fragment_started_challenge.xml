@@ -139,6 +139,7 @@
             app:layout_constraintWidth_percent="0.4">
 
             <TextView
+                android:id="@+id/steps_walked_txt_started_c"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"

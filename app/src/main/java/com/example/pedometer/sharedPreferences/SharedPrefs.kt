@@ -157,6 +157,16 @@ class SharedPrefs(context: Context) {
         return waterPrefs.getBoolean("unitsChanged", false)
     }
 
+    fun setPreviousHours(hours: Int){
+        waterEditor.putInt("previousHours", hours)
+        waterEditor.apply()
+    }
+
+
+    fun getPreviousHours(): Int{
+        return waterPrefs.getInt("previousHours", -1)
+    }
+
 
 
 

@@ -1,22 +1,31 @@
 package com.example.pedometer.ui.fragments
 
 import android.app.AlertDialog
+import android.app.job.JobInfo
+import android.app.job.JobScheduler
 import android.content.BroadcastReceiver
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.example.pedometer.R
 import com.example.pedometer.bottomsheets.EditStepsSheet
 import com.example.pedometer.bottomsheets.WaterIntakeSheet
@@ -34,6 +43,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import java.text.DecimalFormat
+import java.util.concurrent.TimeUnit
 
 
 class HomeFragment : Fragment(), OnChartValueSelectedListener {
@@ -46,6 +56,7 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
     private var goal: Int? = null
     private lateinit var barChartManager: BarChartManager
     private lateinit var waterManager: WaterManager
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +72,7 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
         waterManager = WaterManager(requireContext())
     }
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -68,6 +80,8 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         editStepsSheet = EditStepsSheet()
 
+        workerManager()
+        askActivityPermission()
         waterManager.registerTimeReceiver(requireContext())
         init()
         waterIntakeManagement()
@@ -76,6 +90,42 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
 
         return binding.root
     }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun askActivityPermission() {
+        requestPermissions(
+            arrayOf(
+                android.Manifest.permission.ACTIVITY_RECOGNITION
+            ), 100
+        )
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 100){
+            if ((grantResults.isNotEmpty() && grantResults[0] == android.content.pm.PackageManager.PERMISSION_GRANTED)) {
+                println("Permission granted")
+            } else {
+                println("Permission denied")
+            }
+        }
+
+    }
+
+    private fun workerManager() {
+        val constraints = waterManager.buildConstraints()
+        val deleteWaterDataRequest = waterManager.buildDeleteWaterDataRequest(constraints)
+        val dailyCleanupRequest = waterManager.buildDailyCleanupRequest(constraints)
+
+        val workManager = WorkManager.getInstance(requireContext())
+        workManager.enqueue(deleteWaterDataRequest)
+        workManager.enqueueUniquePeriodicWork(
+            "daily_cleanup",
+            ExistingPeriodicWorkPolicy.KEEP,
+            dailyCleanupRequest
+        )
+    }
+
 
     private fun serviceStartManagement() {
         val isServiceRunning = sharedPrefs.getIsServiceRunning()
@@ -246,12 +296,6 @@ class HomeFragment : Fragment(), OnChartValueSelectedListener {
             else
                 Toast.makeText(requireContext(), "Please enable water tracking from settings", Toast.LENGTH_SHORT).show()
         }
-
-        /*        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-                    //showTurnOffDialog()
-                    println("Back button pressed home")
-                    requireActivity().finish()
-                }*/
 
     }
 
